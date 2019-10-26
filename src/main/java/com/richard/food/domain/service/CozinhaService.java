@@ -18,4 +18,7 @@ public class CozinhaService {
 		return cozinhaRepository.findAll();
 	}
 
+	public Cozinha buscar(Long cozinhaId) {
+		return cozinhaRepository.findById(cozinhaId).orElse(null);
+	}
 }

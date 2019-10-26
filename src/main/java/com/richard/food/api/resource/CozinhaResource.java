@@ -2,9 +2,11 @@ package com.richard.food.api.resource;
 
 import java.util.List;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +31,13 @@ public class CozinhaResource {
 		List<CozinhaModel> collectionModel = cozinhaModelAssembler.toCollectionModel(todasCozinhas);
 		return ResponseEntity.ok(collectionModel);
 	}
+
+	@GetMapping("/{cozinhaId}")
+	public ResponseEntity<CozinhaModel> buscar(@PathVariable Long cozinhaId) {
+		Cozinha cozinha = cozinhaService.buscar(cozinhaId);
+		CozinhaModel cozinhaModel = cozinhaModelAssembler.toModel(cozinha);
+		return ResponseEntity.ok(cozinhaModel);
+	}
+
 
 }
