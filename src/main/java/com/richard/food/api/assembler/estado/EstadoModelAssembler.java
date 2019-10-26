@@ -1,8 +1,6 @@
-package com.richard.food.api.assembler;
+package com.richard.food.api.assembler.estado;
 
-import com.richard.food.api.model.CozinhaModel;
 import com.richard.food.api.model.EstadoModel;
-import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.model.Estado;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

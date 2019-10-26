@@ -1,4 +1,4 @@
-package com.richard.food.api.assembler;
+package com.richard.food.api.assembler.restaurante;
 
 import com.richard.food.api.model.input.RestauranteInput;
 import com.richard.food.domain.model.Cozinha;

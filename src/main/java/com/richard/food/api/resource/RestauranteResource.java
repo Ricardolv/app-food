@@ -1,7 +1,7 @@
 package com.richard.food.api.resource;
 
-import com.richard.food.api.assembler.RestauranteInputDisassembler;
-import com.richard.food.api.assembler.RestauranteModelAssembler;
+import com.richard.food.api.assembler.restaurante.RestauranteInputDisassembler;
+import com.richard.food.api.assembler.restaurante.RestauranteModelAssembler;
 import com.richard.food.api.model.RestauranteModel;
 import com.richard.food.api.model.input.RestauranteInput;
 import com.richard.food.domain.excepiton.CozinhaNaoEncontradaException;

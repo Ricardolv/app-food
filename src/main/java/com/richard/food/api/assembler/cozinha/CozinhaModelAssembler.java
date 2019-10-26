@@ -1,4 +1,4 @@
-package com.richard.food.api.assembler;
+package com.richard.food.api.assembler.cozinha;
 
 import java.util.List;
 import java.util.stream.Collectors;

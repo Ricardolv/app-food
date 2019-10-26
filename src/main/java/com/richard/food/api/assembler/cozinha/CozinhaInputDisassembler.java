@@ -1,4 +1,4 @@
-package com.richard.food.api.assembler;
+package com.richard.food.api.assembler.cozinha;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

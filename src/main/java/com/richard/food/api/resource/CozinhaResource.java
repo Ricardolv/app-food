@@ -2,15 +2,14 @@ package com.richard.food.api.resource;
 
 import java.util.List;
 
-import com.richard.food.api.assembler.CozinhaInputDisassembler;
+import com.richard.food.api.assembler.cozinha.CozinhaInputDisassembler;
 import com.richard.food.api.model.input.CozinhaInput;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.richard.food.api.assembler.CozinhaModelAssembler;
+import com.richard.food.api.assembler.cozinha.CozinhaModelAssembler;
 import com.richard.food.api.model.CozinhaModel;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.service.CozinhaService;
