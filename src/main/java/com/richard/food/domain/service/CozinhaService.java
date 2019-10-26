@@ -21,4 +21,8 @@ public class CozinhaService {
 	public Cozinha buscar(Long cozinhaId) {
 		return cozinhaRepository.findById(cozinhaId).orElse(null);
 	}
+
+	public Cozinha salvar(Cozinha cozinha) {
+		return cozinhaRepository.saveAndFlush(cozinha);
+	}
 }
