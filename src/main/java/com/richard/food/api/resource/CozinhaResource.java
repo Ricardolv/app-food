@@ -18,7 +18,7 @@ import com.richard.food.domain.service.CozinhaService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/cozinhas")
+@RequestMapping(value = "/cozinhas")
 public class CozinhaResource {
 	
 	@Autowired

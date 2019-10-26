@@ -38,7 +38,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         @Override
         protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                HttpHeaders headers, HttpStatus status, WebRequest request) {
+                                                                      HttpHeaders headers, HttpStatus status, WebRequest request) {
 
             ProblemType problemType = ProblemType.DADOS_INVALIDOS;
             String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
@@ -149,9 +149,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
             return handleExceptionInternal(ex, problem, headers, status, request);
         }
 
-        private ResponseEntity<Object> handlePropertyBinding(PropertyBindingException ex,
-                                                             HttpHeaders headers, HttpStatus status, WebRequest request) {
-
+        private ResponseEntity<Object> handlePropertyBinding(PropertyBindingException ex, HttpHeaders headers,
+                                                             HttpStatus status, WebRequest request) {
             String path = joinPath(ex.getPath());
 
             ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
@@ -164,9 +163,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
             return handleExceptionInternal(ex, problem, headers, status, request);
         }
 
-        private ResponseEntity<Object> handleInvalidFormat(InvalidFormatException ex,
-                                                           HttpHeaders headers, HttpStatus status, WebRequest request) {
-
+        private ResponseEntity<Object> handleInvalidFormat(InvalidFormatException ex, HttpHeaders headers,
+                                                           HttpStatus status, WebRequest request) {
             String path = joinPath(ex.getPath());
 
             ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
@@ -182,8 +180,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         }
 
         @ExceptionHandler(EntidadeNaoEncontradaException.class)
-        public ResponseEntity<?> handleEntidadeNaoEncontrada(EntidadeNaoEncontradaException ex,
-                WebRequest request) {
+        public ResponseEntity<?> handleEntidadeNaoEncontrada(EntidadeNaoEncontradaException ex, WebRequest request) {
 
             HttpStatus status = HttpStatus.NOT_FOUND;
             ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
