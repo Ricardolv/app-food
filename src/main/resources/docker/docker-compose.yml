@@ -9,4 +9,4 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /home/richard/dev/docker/volumes/mySql:/var/lib/mysql
+      - "./data/postgres:/var/lib/postgresql/data"
