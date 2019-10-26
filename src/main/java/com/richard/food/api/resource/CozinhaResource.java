@@ -3,6 +3,7 @@ package com.richard.food.api.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +24,10 @@ public class CozinhaResource {
 	private CozinhaService cozinhaService;
 	
 	@GetMapping
-	public List<CozinhaModel> listar() {
+	public ResponseEntity<List<CozinhaModel>> listar() {
 		List<Cozinha> todasCozinhas = cozinhaService.listar();
 		List<CozinhaModel> collectionModel = cozinhaModelAssembler.toCollectionModel(todasCozinhas);
-		return collectionModel;
+		return ResponseEntity.ok(collectionModel);
 	}
 
 }
