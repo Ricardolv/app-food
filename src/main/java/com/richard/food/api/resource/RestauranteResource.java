@@ -1,5 +1,6 @@
 package com.richard.food.api.resource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.richard.food.api.assembler.restaurante.RestauranteInputDisassembler;
 import com.richard.food.api.assembler.restaurante.RestauranteModelAssembler;
 import com.richard.food.api.model.RestauranteModel;
@@ -11,9 +12,11 @@ import com.richard.food.domain.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +73,7 @@ public class RestauranteResource {
     @PatchMapping(("/{restauranteId}"))
     public ResponseEntity<?> atualizarParcial(@PathVariable Long restauranteId,
                                               @RequestBody Map<String, Object> campos) {
-        Restaurante restauranteAtual = restauranteService.buscar(restauranteId);
+        Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
 
         if (restauranteAtual == null) {
             return ResponseEntity.notFound().build();
@@ -81,9 +84,20 @@ public class RestauranteResource {
         return ResponseEntity.ok(atualizar(restauranteId, restauranteModelAssembler.toModelInput(restauranteAtual)));
     }
 
-    private void merge(Map<String, Object> camposOrigem, Restaurante restauranteDestino) {
-        camposOrigem.forEach((nomePropriedade, valorPropriedade) -> {
+    private void merge(Map<String, Object> dadosOrigem, Restaurante restauranteDestino) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Restaurante restauranteOrigem = objectMapper.convertValue(dadosOrigem, Restaurante.class);
+
+        dadosOrigem.forEach((nomePropriedade, valorPropriedade) -> {
+            Field field = ReflectionUtils.findField(Restaurante.class, nomePropriedade);
+            field.setAccessible(true);
+
+            Object novoValor = ReflectionUtils.getField(field, restauranteOrigem);
+
             System.out.println(nomePropriedade + " = " + valorPropriedade);
+
+            ReflectionUtils.setField(field, restauranteDestino, novoValor);
         });
     }
 

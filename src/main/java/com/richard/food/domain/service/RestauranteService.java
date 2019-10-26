@@ -36,8 +36,4 @@ public class RestauranteService {
         return restauranteRepository.findById(restauranteId)
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
     }
-
-    public Restaurante buscar(Long restauranteId) {
-        return null;
-    }
 }

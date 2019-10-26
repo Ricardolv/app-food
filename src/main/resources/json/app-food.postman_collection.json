@@ -252,7 +252,7 @@
 			"name": "restaurantes",
 			"item": [
 				{
-					"name": "colecao de restaurantes",
+					"name": "Obter colecao",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -270,7 +270,7 @@
 					"response": []
 				},
 				{
-					"name": "Obter restaurante por id",
+					"name": "Obter por id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -289,7 +289,7 @@
 					"response": []
 				},
 				{
-					"name": "Adicionar restaurante",
+					"name": "Adicionar",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -321,6 +321,76 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Atualizacao parcial",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nome\": \"Thai Gourmet3\",\n    \"taxaFrete\": 10.03,\n    \"cozinha\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/restaurantes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar restaurante",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"nome\": \"Thai Gourmet1\",\n    \"taxaFrete\": 10.00,\n    \"cozinha\": {\n        \"id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/restaurantes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -329,7 +399,7 @@
 			"name": "cidades",
 			"item": [
 				{
-					"name": "colecao de cidades",
+					"name": "Obter colecao",
 					"request": {
 						"method": "GET",
 						"header": [],
