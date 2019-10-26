@@ -52,5 +52,18 @@ public class CozinhaResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(cozinhaModel);
 	}
 
- 
+	@PutMapping("/{cozinhaId}")
+ 	public ResponseEntity<CozinhaModel> atualizar(@PathVariable Long cozinhaId,
+												  @RequestBody @Valid CozinhaInput cozinhaInput) {
+		Cozinha cozinhaAtual = cozinhaService.buscarOuFalhar(cozinhaId);
+		cozinhaInputDisassembler.copyToDomainObject(cozinhaInput, cozinhaAtual);
+		cozinhaAtual = cozinhaService.salvar(cozinhaAtual);
+		return ResponseEntity.ok(cozinhaModelAssembler.toModel(cozinhaAtual));
+	}
+
+	@DeleteMapping("/{cozinhaId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long cozinhaId) {
+		cozinhaService.excluir(cozinhaId);
+	}
 }

@@ -27,19 +27,19 @@
 					"response": []
 				},
 				{
-					"name": "Obter cozinha por id",
+					"name": "Deletar cozinha por id",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/cozinhas/2",
+							"raw": "localhost:8080/cozinhas/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"cozinhas",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -74,6 +74,60 @@
 							"port": "8080",
 							"path": [
 								"cozinhas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cozinha por id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Barsileira@@@@@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/cozinhas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cozinhas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter cozinha por id Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cozinhas/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cozinhas",
+								"2"
 							]
 						}
 					},
