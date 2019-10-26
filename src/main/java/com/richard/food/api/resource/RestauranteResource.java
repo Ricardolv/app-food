@@ -94,9 +94,6 @@ public class RestauranteResource {
             field.setAccessible(true);
 
             Object novoValor = ReflectionUtils.getField(field, restauranteOrigem);
-
-            System.out.println(nomePropriedade + " = " + valorPropriedade);
-
             ReflectionUtils.setField(field, restauranteDestino, novoValor);
         });
     }
