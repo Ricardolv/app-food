@@ -23,10 +23,6 @@ public class CozinhaService {
 		return cozinhaRepository.findAll();
 	}
 
-	public Cozinha buscar(Long cozinhaId) {
-		return cozinhaRepository.findById(cozinhaId).orElse(null);
-	}
-
 	public Cozinha salvar(Cozinha cozinha) {
 		return cozinha.getId() != null ? cozinhaRepository.save(cozinha) : cozinhaRepository.saveAndFlush(cozinha);
 	}

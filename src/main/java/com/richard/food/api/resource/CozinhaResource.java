@@ -38,7 +38,7 @@ public class CozinhaResource {
 
 	@GetMapping("/{cozinhaId}")
 	public ResponseEntity<CozinhaModel> buscar(@PathVariable Long cozinhaId) {
-		Cozinha cozinha = cozinhaService.buscar(cozinhaId);
+		Cozinha cozinha = cozinhaService.buscarOuFalhar(cozinhaId);
 		CozinhaModel cozinhaModel = cozinhaModelAssembler.toModel(cozinha);
 		return ResponseEntity.ok(cozinhaModel);
 	}
