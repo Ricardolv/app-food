@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.richard.food.domain.model.Restaurante;
 import org.springframework.data.repository.query.Param;
 
-public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
+public interface RestauranteRepository extends JpaRepository<Restaurante, Long>, RestauranteRepositoryQueries {
 	
 	Optional<Restaurante> findFirstByNome(String nome);
 

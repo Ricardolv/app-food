@@ -16,13 +16,13 @@ insert into permissao (id, nome, descricao) values (1, 'Persistencia', 'Cozinha'
 insert into permissao (id, nome, descricao) values (2, 'Persistencia', 'Restaurante');
 
 --
-insert into  ( id, nome, sigla) values (1, 'Acre', 'AC');
-insert into  ( id, nome, sigla) values (2, 'Alagoas', 'AL');
-insert into  ( id, nome, sigla) values (3, 'Amapá', 'AP');
-insert into  ( id, nome, sigla) values (4, 'Amazonas', 'AM');
-insert into  ( id, nome, sigla) values (5, 'Bahia', 'BA');
-insert into  ( id, nome, sigla) values (6, 'Ceará', 'CE');
-insert into  ( id, nome, sigla) values (7, 'Distrito Federal', 'DF');
+insert into estado ( id, nome, sigla) values (1, 'Acre', 'AC');
+insert into estado ( id, nome, sigla) values (2, 'Alagoas', 'AL');
+insert into estado ( id, nome, sigla) values (3, 'Amapá', 'AP');
+insert into estado ( id, nome, sigla) values (4, 'Amazonas', 'AM');
+insert into estado ( id, nome, sigla) values (5, 'Bahia', 'BA');
+insert into estado ( id, nome, sigla) values (6, 'Ceará', 'CE');
+insert into estado ( id, nome, sigla) values (7, 'Distrito Federal', 'DF');
 insert into estado ( id, nome, sigla) values (8, 'Espírito Santo', 'ES');
 insert into estado ( id, nome, sigla) values (9, 'Goiás', 'GO');
 insert into estado ( id, nome, sigla) values (10, 'Maranhão', 'MA');
