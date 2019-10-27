@@ -50,6 +50,6 @@ public class RestauranteService {
 
     // Specification usando fabrica
     public List<Restaurante> findAllFreGratis(String nome) {
-        return restauranteRepository.findAll(comFreteGratis().and(comFreteGratis()));
+        return restauranteRepository.findComFreteGratis(nome);
     }
 }
