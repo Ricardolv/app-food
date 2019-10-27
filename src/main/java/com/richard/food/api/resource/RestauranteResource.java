@@ -70,7 +70,7 @@ public class RestauranteResource {
         }
     }
 
-    @PatchMapping(("/{restauranteId}"))
+    @PatchMapping("/{restauranteId}")
     public ResponseEntity<?> atualizarParcial(@PathVariable Long restauranteId,
                                               @RequestBody Map<String, Object> campos) {
         Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
