@@ -4,6 +4,8 @@ import com.richard.food.domain.excepiton.RestauranteNaoEncontradoException;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.model.Restaurante;
 import com.richard.food.domain.repository.RestauranteRepository;
+import com.richard.food.infrastructure.repository.spec.RestauranteComFreteGratisSpec;
+import com.richard.food.infrastructure.repository.spec.RestauranteComNomeSemelhanteSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,11 @@ public class RestauranteService {
     public Restaurante buscarOuFalhar(Long restauranteId) {
         return restauranteRepository.findById(restauranteId)
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
+    }
+
+    public List<Restaurante> findAllFreGratisAndNomeSemelhante(String nome) {
+        var comFreteGratis = new RestauranteComFreteGratisSpec();
+        var comNomeSemelhante = new RestauranteComNomeSemelhanteSpec(nome);
+        return restauranteRepository.findAll(comFreteGratis.and(comNomeSemelhante));
     }
 }
