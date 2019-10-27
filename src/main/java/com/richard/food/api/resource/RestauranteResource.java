@@ -46,25 +46,25 @@ public class RestauranteResource {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RestauranteModel adicionar(@RequestBody @Valid RestauranteInput restauranteInput) {
+    public ResponseEntity<RestauranteModel> adicionar(@RequestBody @Valid RestauranteInput restauranteInput) {
         try {
             Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
 
-            return restauranteModelAssembler.toModel(restauranteService.salvar(restaurante));
+            return ResponseEntity.ok(restauranteModelAssembler.toModel(restauranteService.salvar(restaurante)));
         } catch (CozinhaNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
         }
     }
 
     @PutMapping("/{restauranteId}")
-    public RestauranteModel atualizar(@PathVariable Long restauranteId,
+    public ResponseEntity<RestauranteModel> atualizar(@PathVariable Long restauranteId,
                                       @RequestBody @Valid RestauranteInput restauranteInput) {
         try {
             Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
 
             restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
 
-            return restauranteModelAssembler.toModel(restauranteService.salvar(restauranteAtual));
+            return ResponseEntity.ok(restauranteModelAssembler.toModel(restauranteService.salvar(restauranteAtual)));
         } catch (CozinhaNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
         }
