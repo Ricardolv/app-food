@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.richard.food.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
+
 @Service
 public class RestauranteService {
 
@@ -39,9 +41,15 @@ public class RestauranteService {
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
     }
 
+    // Specification de forma normal
     public List<Restaurante> findAllFreGratisAndNomeSemelhante(String nome) {
         var comFreteGratis = new RestauranteComFreteGratisSpec();
         var comNomeSemelhante = new RestauranteComNomeSemelhanteSpec(nome);
         return restauranteRepository.findAll(comFreteGratis.and(comNomeSemelhante));
+    }
+
+    // Specification usando fabrica
+    public List<Restaurante> findAllFreGratis(String nome) {
+        return restauranteRepository.findAll(comFreteGratis().and(comFreteGratis()));
     }
 }
