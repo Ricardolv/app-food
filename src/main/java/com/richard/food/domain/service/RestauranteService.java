@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.richard.food.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
+import java.util.Optional;
 
 @Service
 public class RestauranteService {
@@ -51,5 +50,9 @@ public class RestauranteService {
     // Specification usando fabrica
     public List<Restaurante> findAllFreGratis(String nome) {
         return restauranteRepository.findComFreteGratis(nome);
+    }
+
+    public Optional<Restaurante> restaurantePrimeiro() {
+        return restauranteRepository.buscarPrimeiro();
     }
 }
