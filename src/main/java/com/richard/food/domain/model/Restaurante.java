@@ -14,7 +14,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Getter
@@ -41,18 +43,20 @@ public class Restaurante implements Serializable {
 	
 	private Boolean ativo;
 	private Boolean aberto;
-	
+
+	@CreationTimestamp
 	@Column(name = "data_cadastro")
 	private LocalDateTime dataCadastro;
-	
+
+	@UpdateTimestamp
 	@Column(name = "data_atualizacao")
 	private LocalDateTime dataAtualizacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "cozinha_codigo", nullable = false)
+	@JoinColumn(name = "cozinha_id", nullable = false)
 	private Cozinha cozinha;
 
-	@EmbeddedId
+	@Embedded
 	private Endereco endereco;
 
 	@ManyToMany
