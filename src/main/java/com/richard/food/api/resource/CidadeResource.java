@@ -76,5 +76,4 @@ public class CidadeResource {
         cidadeService.excluir(cidadeId);
     }
 
-
 }

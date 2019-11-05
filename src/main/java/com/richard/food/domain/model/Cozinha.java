@@ -32,7 +32,7 @@ public class Cozinha {
 	@Column(nullable = false)
 	private String nome;
 
-	@OneToMany(mappedBy = "cozinha", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cozinha")
 	private List<Restaurante> restaurantes = new ArrayList<>();
 
 }

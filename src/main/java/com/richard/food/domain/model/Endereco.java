@@ -37,7 +37,7 @@ public class Endereco implements Serializable {
 	@Column(name = "endereco_bairro")
 	private String bairro;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "endereco_cidade_id", nullable = false)
 	private Cidade cidade;
 
