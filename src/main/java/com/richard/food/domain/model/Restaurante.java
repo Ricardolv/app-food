@@ -52,6 +52,9 @@ public class Restaurante implements Serializable {
 	@JoinColumn(name = "cozinha_codigo", nullable = false)
 	private Cozinha cozinha;
 
+	@EmbeddedId
+	private Endereco endereco;
+
 	@ManyToMany
 	@JoinTable(name = "restaurante_forma_pagamento",
 			   joinColumns = @JoinColumn(name = "restaurante_id"),
