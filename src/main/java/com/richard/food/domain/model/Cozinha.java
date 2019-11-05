@@ -2,7 +2,6 @@ package com.richard.food.domain.model;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -33,7 +32,7 @@ public class Cozinha {
 	@Column(nullable = false)
 	private String nome;
 
-	@OneToMany(mappedBy = "cozinha")
+	@OneToMany(mappedBy = "cozinha", fetch = FetchType.LAZY)
 	private List<Restaurante> restaurantes = new ArrayList<>();
 
 }
