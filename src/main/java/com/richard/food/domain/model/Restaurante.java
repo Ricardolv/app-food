@@ -45,11 +45,11 @@ public class Restaurante implements Serializable {
 	private Boolean aberto;
 
 	@CreationTimestamp
-	@Column(name = "data_cadastro")
+	@Column(name = "data_cadastro", nullable = false, columnDefinition = "datetime")
 	private LocalDateTime dataCadastro;
 
 	@UpdateTimestamp
-	@Column(name = "data_atualizacao")
+	@Column(name = "data_atualizacao", nullable = false, columnDefinition = "datetime")
 	private LocalDateTime dataAtualizacao;
 	
 	@ManyToOne
