@@ -31,7 +31,5 @@ public class FormaPagamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-
-//	@ManyToMany(mappedBy = "formasPagamento")
-//	private List<Restaurante> restaurantes = new ArrayList<>();
+	
 }

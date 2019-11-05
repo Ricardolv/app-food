@@ -58,7 +58,7 @@ public class RestauranteResource {
 
     @PutMapping("/{restauranteId}")
     public ResponseEntity<RestauranteModel> atualizar(@PathVariable Long restauranteId,
-                                      @RequestBody @Valid RestauranteInput restauranteInput) {
+                                                      @RequestBody @Valid RestauranteInput restauranteInput) {
         try {
             Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
 
