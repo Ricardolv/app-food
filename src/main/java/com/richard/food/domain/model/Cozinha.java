@@ -1,11 +1,8 @@
 package com.richard.food.domain.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,6 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +32,8 @@ public class Cozinha {
 	
 	@Column(nullable = false)
 	private String nome;
-	
+
+	@OneToMany(mappedBy = "cozinha")
+	private List<Restaurante> restaurantes = new ArrayList<>();
 
 }
