@@ -3,14 +3,10 @@ package com.richard.food.domain.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import com.richard.food.domain.model.enumerations.StatusPedido;
 
@@ -20,6 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Getter
@@ -37,7 +34,6 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String codigo;
 	
 	@Enumerated(EnumType.ORDINAL)
@@ -48,7 +44,11 @@ public class Pedido implements Serializable {
 	
 	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
-	
+
+	@Column(name = "sub_total")
+	private BigDecimal subtotal;
+
+	@CreationTimestamp
 	@Column(name = "data_cadastro")
 	private LocalDateTime dataCadastro;
 	
@@ -61,5 +61,19 @@ public class Pedido implements Serializable {
 	@Column(name = "data_cancelamento")
 	private LocalDateTime dataCancelamento;
 
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private FormaPagamento formaPagamento;
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Restaurante restaurante;
+
+	@ManyToOne
+	@JoinColumn(name = "usuario_cliente_id", nullable = false)
+	private Usuario cliente;
+
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> itens = new ArrayList<>();
 
 }

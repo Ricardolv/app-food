@@ -3,11 +3,7 @@ package com.richard.food.domain.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,15 +28,21 @@ public class ItemPedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private Integer quantidade;
+	private String observacao;
 	
 	@Column(name = "preco_unitario")
 	private BigDecimal precoUnitario;
 	
 	@Column(name = "preco_total")
 	private BigDecimal precoTotal;
-	
-	private String observacao;
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Pedido pedido;
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Produto produto;
 
 }
