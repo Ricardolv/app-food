@@ -91,7 +91,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
             ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
             String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.",
-                    ex.getRequestURL());
+                                          ex.getRequestURL());
 
             Problem problem = createProblemBuilder(status, problemType, detail)
                     .userMessage(ConstantesApi.MSG_ERRO_GENERICA_USUARIO_FINAL)
