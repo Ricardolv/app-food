@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import com.richard.food.core.validation.Multiplo;
 import com.richard.food.core.validation.TaxaFrete;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class RestauranteInput {
     @NotNull
     @PositiveOrZero
     //@TaxaFrete
+    //@Multiplo(numero = 5)
     private BigDecimal taxaFrete;
 
     @Valid
