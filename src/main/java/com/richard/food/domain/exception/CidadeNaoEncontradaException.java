@@ -1,4 +1,4 @@
-package com.richard.food.domain.excepiton;
+package com.richard.food.domain.exception;
 
 import static com.richard.food.domain.util.ConstantesDomain.NÃO_EXISTE_CADASTRO_CIDADE;
 

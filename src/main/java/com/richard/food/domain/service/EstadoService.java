@@ -1,7 +1,7 @@
 package com.richard.food.domain.service;
 
-import com.richard.food.domain.excepiton.EntidadeEmUsoException;
-import com.richard.food.domain.excepiton.EstadoNaoEncontradoException;
+import com.richard.food.domain.exception.EntidadeEmUsoException;
+import com.richard.food.domain.exception.EstadoNaoEncontradoException;
 import com.richard.food.domain.model.Estado;
 import com.richard.food.domain.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

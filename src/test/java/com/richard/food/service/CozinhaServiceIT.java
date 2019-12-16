@@ -2,8 +2,8 @@ package com.richard.food.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.richard.food.domain.excepiton.CozinhaNaoEncontradaException;
-import com.richard.food.domain.excepiton.EntidadeEmUsoException;
+import com.richard.food.domain.exception.CozinhaNaoEncontradaException;
+import com.richard.food.domain.exception.EntidadeEmUsoException;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.service.CozinhaService;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CozinhaServiceTest {
+public class CozinhaServiceIT {
 
     @Autowired
     private CozinhaService cozinhaService;

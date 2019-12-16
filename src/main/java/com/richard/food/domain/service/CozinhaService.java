@@ -2,8 +2,8 @@ package com.richard.food.domain.service;
 
 import java.util.List;
 
-import com.richard.food.domain.excepiton.CozinhaNaoEncontradaException;
-import com.richard.food.domain.excepiton.EntidadeEmUsoException;
+import com.richard.food.domain.exception.CozinhaNaoEncontradaException;
+import com.richard.food.domain.exception.EntidadeEmUsoException;
 import com.richard.food.domain.util.ConstantesDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

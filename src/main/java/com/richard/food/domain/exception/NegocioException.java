@@ -1,4 +1,4 @@
-package com.richard.food.domain.excepiton;
+package com.richard.food.domain.exception;
 
 public class NegocioException extends RuntimeException {
     private static final long serialVersionUID = 1L;

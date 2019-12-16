@@ -1,7 +1,7 @@
 package com.richard.food.domain.service;
 
-import com.richard.food.domain.excepiton.CidadeNaoEncontradaException;
-import com.richard.food.domain.excepiton.EntidadeEmUsoException;
+import com.richard.food.domain.exception.CidadeNaoEncontradaException;
+import com.richard.food.domain.exception.EntidadeEmUsoException;
 import com.richard.food.domain.model.Cidade;
 import com.richard.food.domain.model.Estado;
 import com.richard.food.domain.repository.CidadeRepository;

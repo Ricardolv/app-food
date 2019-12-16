@@ -1,6 +1,6 @@
 package com.richard.food.domain.service;
 
-import com.richard.food.domain.excepiton.RestauranteNaoEncontradoException;
+import com.richard.food.domain.exception.RestauranteNaoEncontradoException;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.model.Restaurante;
 import com.richard.food.domain.repository.RestauranteRepository;
