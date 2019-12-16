@@ -56,11 +56,10 @@ public class RestauranteResource {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<RestauranteModel> adicionar(@RequestBody @Valid RestauranteInput restauranteInput) {
         try {
             Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
-            return ResponseEntity.ok(restauranteModelAssembler.toModel(restauranteService.salvar(restaurante)));
+            return ResponseEntity.status(HttpStatus.CREATED).body(restauranteModelAssembler.toModel(restauranteService.salvar(restaurante)));
         } catch (CozinhaNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
         }

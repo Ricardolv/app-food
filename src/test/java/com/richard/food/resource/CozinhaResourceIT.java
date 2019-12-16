@@ -54,7 +54,7 @@ public class CozinhaResourceIT {
 		
 		databaseCleaner.clearTables();
 		
-		jsonCorretoCozinhaChinesa = ResourceUtils.getContentFromResource("/json/cozinha-chinesa.json");
+		jsonCorretoCozinhaChinesa = ResourceUtils.getContentFromResource("/json/correto/cozinha-chinesa.json");
 		
 		prepararDados();
 		
