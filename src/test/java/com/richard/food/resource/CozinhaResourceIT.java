@@ -3,6 +3,7 @@ package com.richard.food.resource;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasSize;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,9 +21,15 @@ public class CozinhaResourceIT {
 	@LocalServerPort
 	private int port;
 	
+	@Before
+	public void setUp() {
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+		RestAssured.port = port;
+		RestAssured.basePath = "/cozinhas";
+	}
+	
 	@Test
 	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
-		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		
 		given()
 			.basePath("/cozinhas")
@@ -36,7 +43,6 @@ public class CozinhaResourceIT {
 	
 	@Test
 	public void deveConter4Cozinhas_QuandoConsultarCozinhas() {
-		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		
 		given()
 			.basePath("/cozinhas")
