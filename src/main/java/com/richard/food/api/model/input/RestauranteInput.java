@@ -9,9 +9,11 @@ import javax.validation.constraints.PositiveOrZero;
 
 import com.richard.food.core.validation.Multiplo;
 import com.richard.food.core.validation.TaxaFrete;
+import com.richard.food.core.validation.ValorZeroIncluiDescricao;
 import lombok.Getter;
 import lombok.Setter;
 
+//@ValorZeroIncluiDescricao(valorField = "taxaFrete", descricaoField = "nome", descricaoObrigatoria = "Frete Grátis")
 @Setter
 @Getter
 public class RestauranteInput {

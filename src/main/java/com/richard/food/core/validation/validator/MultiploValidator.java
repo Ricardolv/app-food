@@ -1,4 +1,6 @@
-package com.richard.food.core.validation;
+package com.richard.food.core.validation.validator;
+
+import com.richard.food.core.validation.Multiplo;
 
 import java.math.BigDecimal;
 
