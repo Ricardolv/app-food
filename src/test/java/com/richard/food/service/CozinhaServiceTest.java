@@ -2,6 +2,8 @@ package com.richard.food.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.richard.food.domain.excepiton.CozinhaNaoEncontradaException;
+import com.richard.food.domain.excepiton.EntidadeEmUsoException;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.service.CozinhaService;
 import org.junit.Test;
@@ -40,5 +42,15 @@ public class CozinhaServiceTest {
         novaCozinha.setNome(null);
 
         novaCozinha = cozinhaService.salvar(novaCozinha);
+    }
+
+    @Test(expected = EntidadeEmUsoException.class)
+    public void deveFalhar_QuandoExcluirCozinhaEmUso() {
+        cozinhaService.excluir(1L);
+    }
+
+    @Test(expected = CozinhaNaoEncontradaException.class)
+    public void deveFalhar_QuandoExcluirCozinhaInexistente() {
+        cozinhaService.excluir(100L);
     }
 }
