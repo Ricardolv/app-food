@@ -6,6 +6,7 @@ import com.richard.food.api.assembler.restaurante.RestauranteInputDisassembler;
 import com.richard.food.api.assembler.restaurante.RestauranteModelAssembler;
 import com.richard.food.api.model.RestauranteModel;
 import com.richard.food.api.model.input.RestauranteInput;
+import com.richard.food.core.validation.exceptions.ValidacaoException;
 import com.richard.food.domain.excepiton.CozinhaNaoEncontradaException;
 import com.richard.food.domain.excepiton.NegocioException;
 import com.richard.food.domain.model.Restaurante;
@@ -17,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +40,9 @@ public class RestauranteResource {
 
     @Autowired
     private RestauranteService restauranteService;
+
+    @Autowired
+    private SmartValidator validator;
 
     @GetMapping
     public List<RestauranteModel> listar() {
@@ -83,6 +89,8 @@ public class RestauranteResource {
         }
 
         merge(campos, restauranteAtual, request);
+        validate(restauranteAtual, "restaurante");
+
         return ResponseEntity.ok(atualizar(restauranteId, restauranteModelAssembler.toModelInput(restauranteAtual)));
     }
 
@@ -106,6 +114,15 @@ public class RestauranteResource {
             throw new HttpMessageNotReadableException(e.getMessage(), rootCause, new ServletServerHttpRequest(request));
         }
 
+    }
+
+    private void validate(Restaurante restaurante, String objectName) {
+        BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(restaurante, objectName);
+        validator.validate(restaurante, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidacaoException(bindingResult);
+        }
     }
 
 }
