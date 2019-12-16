@@ -38,29 +38,31 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         @Override
         protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                      HttpHeaders headers, HttpStatus status, WebRequest request) {
+                                                                      HttpHeaders headers, HttpStatus status,
+                                                                      WebRequest request) {
 
             ProblemType problemType = ProblemType.DADOS_INVALIDOS;
             String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
 
             BindingResult bindingResult = ex.getBindingResult();
 
-            List<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
-                    .map(objectError -> {
-                        String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());
+            List<Problem.Object> problemObjects = bindingResult.getAllErrors()
+                            .stream()
+                            .map(objectError -> {
+                                String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());
 
-                        String name = objectError.getObjectName();
+                                String name = objectError.getObjectName();
 
-                        if (objectError instanceof FieldError) {
-                            name = ((FieldError) objectError).getField();
-                        }
+                                if (objectError instanceof FieldError) {
+                                    name = ((FieldError) objectError).getField();
+                                }
 
-                        return Problem.Object.builder()
-                                .name(name)
-                                .userMessage(message)
-                                .build();
-                    })
-                    .collect(Collectors.toList());
+                                return Problem.Object.builder()
+                                        .name(name)
+                                        .userMessage(message)
+                                        .build();
+                            })
+                            .collect(Collectors.toList());
 
             Problem problem = createProblemBuilder(status, problemType, detail)
                     .userMessage(detail)
