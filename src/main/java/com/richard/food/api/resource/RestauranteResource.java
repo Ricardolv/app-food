@@ -49,7 +49,6 @@ public class RestauranteResource {
     public ResponseEntity<RestauranteModel> adicionar(@RequestBody @Valid RestauranteInput restauranteInput) {
         try {
             Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
-
             return ResponseEntity.ok(restauranteModelAssembler.toModel(restauranteService.salvar(restaurante)));
         } catch (CozinhaNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
@@ -61,9 +60,7 @@ public class RestauranteResource {
                                                       @RequestBody @Valid RestauranteInput restauranteInput) {
         try {
             Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
-
             restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
-
             return ResponseEntity.ok(restauranteModelAssembler.toModel(restauranteService.salvar(restauranteAtual)));
         } catch (CozinhaNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
@@ -80,7 +77,6 @@ public class RestauranteResource {
         }
 
         merge(campos, restauranteAtual);
-
         return ResponseEntity.ok(atualizar(restauranteId, restauranteModelAssembler.toModelInput(restauranteAtual)));
     }
 

@@ -44,9 +44,7 @@ public class EstadoResource {
     @ResponseStatus(HttpStatus.CREATED)
     public EstadoModel adicionar(@RequestBody @Valid EstadoInput estadoInput) {
         Estado estado = estadoInputDisassembler.toDomainObject(estadoInput);
-
         estado = estadoService.salvar(estado);
-
         return estadoModelAssembler.toModel(estado);
     }
 
@@ -54,11 +52,8 @@ public class EstadoResource {
     public EstadoModel atualizar(@PathVariable Long estadoId,
                                  @RequestBody @Valid EstadoInput estadoInput) {
         Estado estadoAtual = estadoService.buscarOuFalhar(estadoId);
-
         estadoInputDisassembler.copyToDomainObject(estadoInput, estadoAtual);
-
         estadoAtual = estadoService.salvar(estadoAtual);
-
         return estadoModelAssembler.toModel(estadoAtual);
     }
 
