@@ -1,20 +1,14 @@
 package com.richard.food.domain.model;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,7 +37,7 @@ public class Usuario implements Serializable {
 
 	@CreationTimestamp
 	@Column(name = "data_cadastro", nullable = false, columnDefinition = "datetime")
-	private LocalDateTime dataCadastro;
+	private OffsetDateTime dataCadastro;
 
 	@ManyToMany
 	@JoinTable(name = "usuario_grupo",

@@ -3,6 +3,7 @@ package com.richard.food.domain.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,16 +51,16 @@ public class Pedido implements Serializable {
 
 	@CreationTimestamp
 	@Column(name = "data_cadastro")
-	private LocalDateTime dataCadastro;
+	private OffsetDateTime dataCadastro;
 	
 	@Column(name = "data_confirmacao")
-	private LocalDateTime dataConfirmacao;
+	private OffsetDateTime dataConfirmacao;
 
 	@Column(name = "data_entrega")
-	private LocalDateTime dataEntrega;
+	private OffsetDateTime dataEntrega;
 	
 	@Column(name = "data_cancelamento")
-	private LocalDateTime dataCancelamento;
+	private OffsetDateTime dataCancelamento;
 
 	@ManyToOne
 	@JoinColumn(nullable = false)
