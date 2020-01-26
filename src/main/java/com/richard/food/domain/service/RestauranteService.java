@@ -7,6 +7,7 @@ import com.richard.food.domain.repository.RestauranteRepository;
 import com.richard.food.infrastructure.repository.spec.RestauranteComFreteGratisSpec;
 import com.richard.food.infrastructure.repository.spec.RestauranteComNomeSemelhanteSpec;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,5 +56,19 @@ public class RestauranteService {
 
     public Optional<Restaurante> restaurantePrimeiro() {
         return restauranteRepository.buscarPrimeiro();
+    }
+
+    @Transactional
+    public void ativar(Long restauranteId) {
+        Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+
+        restauranteAtual.ativar();
+    }
+
+    @Transactional
+    public void inativar(Long restauranteId) {
+        Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+
+        restauranteAtual.inativar();
     }
 }

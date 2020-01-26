@@ -94,6 +94,18 @@ public class RestauranteResource {
         return ResponseEntity.ok(atualizar(restauranteId, restauranteModelAssembler.toModelInput(restauranteAtual)));
     }
 
+    @PutMapping("/{restauranteId}/ativo")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void ativar(@PathVariable Long restauranteId) {
+        restauranteService.ativar(restauranteId);
+    }
+
+    @DeleteMapping("/{restauranteId}/ativo")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void inativar(@PathVariable Long restauranteId) {
+        restauranteService.inativar(restauranteId);
+    }
+
     private void merge(Map<String, Object> dadosOrigem, Restaurante restauranteDestino, HttpServletRequest request) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();

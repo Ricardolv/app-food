@@ -50,6 +50,8 @@ public class Restaurante implements Serializable {
 	@Embedded
 	private Endereco endereco;
 
+	private Boolean ativo = Boolean.TRUE;
+
 	@ManyToMany
 	@JoinTable(name = "restaurante_forma_pagamento",
 			   joinColumns = @JoinColumn(name = "restaurante_id"),
@@ -58,4 +60,12 @@ public class Restaurante implements Serializable {
 
 	@OneToMany(mappedBy = "restaurante")
 	private List<Produto> produtos = new ArrayList<>();
+
+	public void ativar() {
+		setAtivo(true);
+	}
+
+	public void inativar() {
+		setAtivo(false);
+	}
 }
