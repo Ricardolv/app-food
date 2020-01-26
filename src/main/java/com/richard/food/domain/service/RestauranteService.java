@@ -1,6 +1,7 @@
 package com.richard.food.domain.service;
 
 import com.richard.food.domain.exception.RestauranteNaoEncontradoException;
+import com.richard.food.domain.model.Cidade;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.model.Restaurante;
 import com.richard.food.domain.repository.RestauranteRepository;
@@ -19,10 +20,12 @@ public class RestauranteService {
 
     private final RestauranteRepository restauranteRepository;
     private final CozinhaService cozinhaService;
+    private final CidadeService cidadeService;
 
-    public RestauranteService(RestauranteRepository restauranteRepository, CozinhaService cozinhaService) {
+    public RestauranteService(RestauranteRepository restauranteRepository, CozinhaService cozinhaService, CidadeService cidadeService) {
         this.restauranteRepository = restauranteRepository;
         this.cozinhaService = cozinhaService;
+        this.cidadeService = cidadeService;
     }
 
     public List<Restaurante> listar() {
@@ -31,10 +34,13 @@ public class RestauranteService {
 
     public Restaurante salvar(Restaurante restaurante) {
         Long cozinhaId = restaurante.getCozinha().getId();
+        Long cidadeId = restaurante.getEndereco().getCidade().getId();
 
         Cozinha cozinha = cozinhaService.buscarOuFalhar(cozinhaId);
+        Cidade cidade = cidadeService.buscarOuFalhar(cidadeId);
 
         restaurante.setCozinha(cozinha);
+        restaurante.getEndereco().setCidade(cidade);
 
         return nonNull(restaurante.getId()) ? restauranteRepository.save(restaurante) : restauranteRepository.saveAndFlush(restaurante);
     }

@@ -7,6 +7,7 @@ import com.richard.food.api.assembler.restaurante.RestauranteModelAssembler;
 import com.richard.food.api.model.RestauranteModel;
 import com.richard.food.api.model.input.RestauranteInput;
 import com.richard.food.core.validation.exceptions.ValidacaoException;
+import com.richard.food.domain.exception.CidadeNaoEncontradaException;
 import com.richard.food.domain.exception.CozinhaNaoEncontradaException;
 import com.richard.food.domain.exception.NegocioException;
 import com.richard.food.domain.model.Restaurante;
@@ -61,7 +62,7 @@ public class RestauranteResource {
         try {
             Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
             return ResponseEntity.status(HttpStatus.CREATED).body(restauranteModelAssembler.toModel(restauranteService.salvar(restaurante)));
-        } catch (CozinhaNaoEncontradaException e) {
+        } catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
         }
     }
@@ -73,7 +74,7 @@ public class RestauranteResource {
             Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
             restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
             return ResponseEntity.ok(restauranteModelAssembler.toModel(restauranteService.salvar(restauranteAtual)));
-        } catch (CozinhaNaoEncontradaException e) {
+        } catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
             throw new NegocioException(e.getMessage());
         }
     }
