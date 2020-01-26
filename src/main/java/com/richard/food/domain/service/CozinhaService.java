@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.richard.food.domain.model.Cozinha;
 import com.richard.food.domain.repository.CozinhaRepository;
 
+import static java.util.Objects.nonNull;
+
 @Service
 public class CozinhaService {
 	
@@ -26,7 +28,7 @@ public class CozinhaService {
 	}
 
 	public Cozinha salvar(Cozinha cozinha) {
-		return cozinha.getId() != null ? cozinhaRepository.save(cozinha) : cozinhaRepository.saveAndFlush(cozinha);
+		return  nonNull(cozinha.getId()) ? cozinhaRepository.save(cozinha) : cozinhaRepository.saveAndFlush(cozinha);
 	}
 
 	public void excluir(Long cozinhaId) {
