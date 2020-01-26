@@ -7,14 +7,16 @@ import com.richard.food.api.model.RestauranteModel;
 import com.richard.food.api.model.input.RestauranteInput;
 import com.richard.food.domain.model.Restaurante;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RestauranteModelAssembler {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public RestauranteModelAssembler(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     public RestauranteModel toModel(Restaurante restaurante) {
         return modelMapper.map(restaurante, RestauranteModel.class);

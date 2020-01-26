@@ -4,7 +4,6 @@ import com.richard.food.domain.exception.EntidadeEmUsoException;
 import com.richard.food.domain.exception.EstadoNaoEncontradoException;
 import com.richard.food.domain.model.Estado;
 import com.richard.food.domain.repository.EstadoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,11 @@ import static com.richard.food.domain.util.ConstantesDomain.MSG_ESTADO_EM_USO;
 @Service
 public class EstadoService {
 
-    @Autowired
-    private EstadoRepository estadoRepository;
+    private final EstadoRepository estadoRepository;
+
+    public EstadoService(EstadoRepository estadoRepository) {
+        this.estadoRepository = estadoRepository;
+    }
 
     public List<Estado> listar() {
         return estadoRepository.findAll();

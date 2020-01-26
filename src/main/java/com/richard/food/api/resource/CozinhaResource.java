@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.richard.food.api.assembler.cozinha.CozinhaInputDisassembler;
 import com.richard.food.api.model.input.CozinhaInput;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,15 +19,16 @@ import javax.validation.Valid;
 @RequestMapping(value = "/cozinhas")
 public class CozinhaResource {
 	
-	@Autowired
-	private CozinhaModelAssembler cozinhaModelAssembler;
+	private final CozinhaModelAssembler cozinhaModelAssembler;
+	private final CozinhaInputDisassembler cozinhaInputDisassembler;
+	private final CozinhaService cozinhaService;
 
-	@Autowired
-	private CozinhaInputDisassembler cozinhaInputDisassembler;
-	
-	@Autowired
-	private CozinhaService cozinhaService;
-	
+	public CozinhaResource(CozinhaModelAssembler cozinhaModelAssembler, CozinhaInputDisassembler cozinhaInputDisassembler, CozinhaService cozinhaService) {
+		this.cozinhaModelAssembler = cozinhaModelAssembler;
+		this.cozinhaInputDisassembler = cozinhaInputDisassembler;
+		this.cozinhaService = cozinhaService;
+	}
+
 	@GetMapping
 	public ResponseEntity<List<CozinhaModel>> listar() {
 		List<Cozinha> todasCozinhas = cozinhaService.listar();

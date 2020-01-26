@@ -4,14 +4,16 @@ import com.richard.food.api.model.input.CidadeInput;
 import com.richard.food.domain.model.Cidade;
 import com.richard.food.domain.model.Estado;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CidadeInputDisassembler {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public CidadeInputDisassembler(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     public Cidade toDomainObject(CidadeInput cidadeInput) {
         return modelMapper.map(cidadeInput, Cidade.class);

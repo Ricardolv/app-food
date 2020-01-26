@@ -6,7 +6,6 @@ import com.richard.food.api.model.EstadoModel;
 import com.richard.food.api.model.input.EstadoInput;
 import com.richard.food.domain.model.Estado;
 import com.richard.food.domain.service.EstadoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +17,15 @@ import java.util.List;
 @RequestMapping(value = "/estados")
 public class EstadoResource {
 
-    @Autowired
-    private EstadoModelAssembler estadoModelAssembler;
+    private final EstadoModelAssembler estadoModelAssembler;
+    private final EstadoInputDisassembler estadoInputDisassembler;
+    private final EstadoService estadoService;
 
-    @Autowired
-    private EstadoInputDisassembler estadoInputDisassembler;
-
-    @Autowired
-    private EstadoService estadoService;
+    public EstadoResource(EstadoModelAssembler estadoModelAssembler, EstadoInputDisassembler estadoInputDisassembler, EstadoService estadoService) {
+        this.estadoModelAssembler = estadoModelAssembler;
+        this.estadoInputDisassembler = estadoInputDisassembler;
+        this.estadoService = estadoService;
+    }
 
     @GetMapping
     public ResponseEntity<List<EstadoModel>> listar() {

@@ -6,14 +6,16 @@ import java.util.stream.Collectors;
 import com.richard.food.api.model.input.CidadeModel;
 import com.richard.food.domain.model.Cidade;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CidadeModelAssembler {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public CidadeModelAssembler(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     public CidadeModel toModel(Cidade cidade) {
         return modelMapper.map(cidade, CidadeModel.class);

@@ -5,7 +5,6 @@ import com.richard.food.domain.exception.EntidadeEmUsoException;
 import com.richard.food.domain.model.Cidade;
 import com.richard.food.domain.model.Estado;
 import com.richard.food.domain.repository.CidadeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -17,11 +16,13 @@ import static com.richard.food.domain.util.ConstantesDomain.MSG_CIDADE_EM_USO;
 @Service
 public class CidadeService {
 
-    @Autowired
-    private CidadeRepository cidadeRepository;
+    private final CidadeRepository cidadeRepository;
+    private final EstadoService estadoService;
 
-    @Autowired
-    private EstadoService estadoService;
+    public CidadeService(CidadeRepository cidadeRepository, EstadoService estadoService) {
+        this.cidadeRepository = cidadeRepository;
+        this.estadoService = estadoService;
+    }
 
     public List<Cidade> listar() {
         return cidadeRepository.findAll();

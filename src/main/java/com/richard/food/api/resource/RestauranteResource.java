@@ -12,7 +12,6 @@ import com.richard.food.domain.exception.NegocioException;
 import com.richard.food.domain.model.Restaurante;
 import com.richard.food.domain.service.RestauranteService;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -28,21 +27,23 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
+
 @RestController
 @RequestMapping(value = "/restaurantes")
 public class RestauranteResource {
 
-    @Autowired
-    private RestauranteModelAssembler restauranteModelAssembler;
+    private final RestauranteModelAssembler restauranteModelAssembler;
+    private final RestauranteInputDisassembler restauranteInputDisassembler;
+    private final RestauranteService restauranteService;
+    private final SmartValidator validator;
 
-    @Autowired
-    private RestauranteInputDisassembler restauranteInputDisassembler;
-
-    @Autowired
-    private RestauranteService restauranteService;
-
-    @Autowired
-    private SmartValidator validator;
+    public RestauranteResource(RestauranteModelAssembler restauranteModelAssembler, RestauranteInputDisassembler restauranteInputDisassembler, RestauranteService restauranteService, SmartValidator validator) {
+        this.restauranteModelAssembler = restauranteModelAssembler;
+        this.restauranteInputDisassembler = restauranteInputDisassembler;
+        this.restauranteService = restauranteService;
+        this.validator = validator;
+    }
 
     @GetMapping
     public List<RestauranteModel> listar() {
@@ -83,7 +84,7 @@ public class RestauranteResource {
                                               HttpServletRequest request) {
         Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
 
-        if (restauranteAtual == null) {
+        if (isNull(restauranteAtual)) {
             return ResponseEntity.notFound().build();
         }
 

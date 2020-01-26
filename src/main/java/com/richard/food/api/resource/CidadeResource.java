@@ -8,7 +8,6 @@ import com.richard.food.domain.exception.EstadoNaoEncontradoException;
 import com.richard.food.domain.exception.NegocioException;
 import com.richard.food.domain.model.Cidade;
 import com.richard.food.domain.service.CidadeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +18,15 @@ import java.util.List;
 @RequestMapping(value = "/cidades")
 public class CidadeResource {
 
-    @Autowired
-    private CidadeModelAssembler cidadeModelAssembler;
+    private final CidadeModelAssembler cidadeModelAssembler;
+    private final CidadeInputDisassembler cidadeInputDisassembler;
+    private final CidadeService cidadeService;
 
-    @Autowired
-    private CidadeInputDisassembler cidadeInputDisassembler;
-
-    @Autowired
-    private CidadeService cidadeService;
+    public CidadeResource(CidadeModelAssembler cidadeModelAssembler, CidadeInputDisassembler cidadeInputDisassembler, CidadeService cidadeService) {
+        this.cidadeModelAssembler = cidadeModelAssembler;
+        this.cidadeInputDisassembler = cidadeInputDisassembler;
+        this.cidadeService = cidadeService;
+    }
 
     @GetMapping
     public List<CidadeModel> listar() {

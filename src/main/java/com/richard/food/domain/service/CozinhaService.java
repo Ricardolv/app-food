@@ -5,7 +5,6 @@ import java.util.List;
 import com.richard.food.domain.exception.CozinhaNaoEncontradaException;
 import com.richard.food.domain.exception.EntidadeEmUsoException;
 import com.richard.food.domain.util.ConstantesDomain;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,11 @@ import com.richard.food.domain.repository.CozinhaRepository;
 @Service
 public class CozinhaService {
 	
-	@Autowired
-	private CozinhaRepository cozinhaRepository;
+	private final CozinhaRepository cozinhaRepository;
+
+	public CozinhaService(CozinhaRepository cozinhaRepository) {
+		this.cozinhaRepository = cozinhaRepository;
+	}
 
 	public List<Cozinha> listar() {
 		return cozinhaRepository.findAll();

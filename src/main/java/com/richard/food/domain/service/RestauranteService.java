@@ -6,7 +6,6 @@ import com.richard.food.domain.model.Restaurante;
 import com.richard.food.domain.repository.RestauranteRepository;
 import com.richard.food.infrastructure.repository.spec.RestauranteComFreteGratisSpec;
 import com.richard.food.infrastructure.repository.spec.RestauranteComNomeSemelhanteSpec;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +14,13 @@ import java.util.Optional;
 @Service
 public class RestauranteService {
 
-    @Autowired
-    private RestauranteRepository restauranteRepository;
+    private final RestauranteRepository restauranteRepository;
+    private final CozinhaService cozinhaService;
 
-    @Autowired
-    private CozinhaService cozinhaService;
+    public RestauranteService(RestauranteRepository restauranteRepository, CozinhaService cozinhaService) {
+        this.restauranteRepository = restauranteRepository;
+        this.cozinhaService = cozinhaService;
+    }
 
     public List<Restaurante> listar() {
         return restauranteRepository.findAll();
