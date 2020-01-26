@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import com.richard.food.domain.model.Usuario;
 import com.richard.food.domain.repository.CustomJpaRepository;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -28,5 +29,10 @@ public class CustomJpaRepositoryImpl <T, ID> extends SimpleJpaRepository<T, ID> 
                           .getSingleResult();
 
         return Optional.ofNullable(entity);
+    }
+
+    @Override
+    public void detach(T entity) {
+        this.manager.detach(entity);
     }
 }
