@@ -1,8 +1,12 @@
-package com.richard.food.api.model;
+package com.richard.food.api.assembler.produto;
 
+import com.richard.food.api.model.ProdutoModel;
 import com.richard.food.domain.model.Produto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ProdutoModelAssembler {

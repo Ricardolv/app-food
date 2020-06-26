@@ -1,5 +1,6 @@
-package com.richard.food.api.assembler;
+package com.richard.food.api.assembler.produto;
 
+import com.richard.food.api.model.input.ProdutoInput;
 import com.richard.food.domain.model.Produto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
