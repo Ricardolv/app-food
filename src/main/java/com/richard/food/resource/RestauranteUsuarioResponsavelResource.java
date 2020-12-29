@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/restaurantes/{restauranteId}/responsaveis")
-public class RestauranteUsuarioResponsavelController {
+public class RestauranteUsuarioResponsavelResource {
 
     private final RestauranteService cadastroRestaurante;
     private final UsuarioModelAssembler usuarioModelAssembler;
 
-    public RestauranteUsuarioResponsavelController(RestauranteService cadastroRestaurante, UsuarioModelAssembler usuarioModelAssembler) {
+    public RestauranteUsuarioResponsavelResource(RestauranteService cadastroRestaurante, UsuarioModelAssembler usuarioModelAssembler) {
         this.cadastroRestaurante = cadastroRestaurante;
         this.usuarioModelAssembler = usuarioModelAssembler;
     }

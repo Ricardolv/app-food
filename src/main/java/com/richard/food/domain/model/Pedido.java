@@ -38,7 +38,7 @@ public class Pedido implements Serializable {
 	private String codigo;
 	
 	@Enumerated(EnumType.ORDINAL)
-	private StatusPedido status;
+	private StatusPedido status = StatusPedido.CRIADO;
 	
 	@Column(name = "taxa_frete")
 	private BigDecimal taxaFrete;
@@ -76,5 +76,21 @@ public class Pedido implements Serializable {
 
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itens = new ArrayList<>();
+
+	public void calcularValorTotal() {
+		this.subtotal = getItens().stream()
+				.map(item -> item.getPrecoTotal())
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
+
+		this.valorTotal = this.subtotal.add(this.taxaFrete);
+	}
+
+	public void definirFrete() {
+		setTaxaFrete(getRestaurante().getTaxaFrete());
+	}
+
+	public void atribuirPedidoAosItens() {
+		getItens().forEach(item -> item.setPedido(this));
+	}
 
 }

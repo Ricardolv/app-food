@@ -1,5 +1,6 @@
 package com.richard.food.domain.service;
 
+import com.richard.food.domain.exception.NegocioException;
 import com.richard.food.domain.exception.RestauranteNaoEncontradoException;
 import com.richard.food.domain.model.*;
 import com.richard.food.domain.repository.RestauranteRepository;
@@ -80,6 +81,28 @@ public class RestauranteService {
         Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 
         restauranteAtual.inativar();
+    }
+
+    @Transactional
+    public void ativar(List<Long> restautanteIDs ) {
+
+        try {
+            restautanteIDs.forEach(this::ativar);
+        } catch (RestauranteNaoEncontradoException e) {
+            throw new NegocioException(e.getMessage(), e);
+        }
+
+    }
+
+    @Transactional
+    public void inativar(List<Long> restautanteIDs ) {
+
+        try {
+            restautanteIDs.forEach(this::inativar);
+        } catch (RestauranteNaoEncontradoException e) {
+            throw new NegocioException(e.getMessage(), e);
+        }
+
     }
 
     @Transactional

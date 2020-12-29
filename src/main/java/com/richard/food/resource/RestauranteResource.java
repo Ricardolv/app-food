@@ -107,6 +107,18 @@ public class RestauranteResource {
         restauranteService.inativar(restauranteId);
     }
 
+    @PutMapping("/ativacoes")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void ativarMultiplos(@RequestBody List<Long> restauranteIds) {
+        restauranteService.ativar(restauranteIds);
+    }
+
+    @DeleteMapping("/ativacoes")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void inativarMultiplos(@RequestBody List<Long> restauranteIds) {
+        restauranteService.inativar(restauranteIds);
+    }
+
     @PutMapping("/{restauranteId}/abertura")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void abrir(@PathVariable Long restauranteId) {
