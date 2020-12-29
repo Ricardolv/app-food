@@ -1,10 +1,7 @@
 package com.richard.food.domain.service;
 
 import com.richard.food.domain.exception.RestauranteNaoEncontradoException;
-import com.richard.food.domain.model.Cidade;
-import com.richard.food.domain.model.Cozinha;
-import com.richard.food.domain.model.FormaPagamento;
-import com.richard.food.domain.model.Restaurante;
+import com.richard.food.domain.model.*;
 import com.richard.food.domain.repository.RestauranteRepository;
 import com.richard.food.infrastructure.repository.spec.RestauranteComFreteGratisSpec;
 import com.richard.food.infrastructure.repository.spec.RestauranteComNomeSemelhanteSpec;
@@ -23,12 +20,14 @@ public class RestauranteService {
     private final CozinhaService cozinhaService;
     private final CidadeService cidadeService;
     private final FormaPagamentoService formaPagamentoService;
+    private final UsuarioService usuarioService;
 
-    public RestauranteService(RestauranteRepository restauranteRepository, CozinhaService cozinhaService, CidadeService cidadeService, FormaPagamentoService formaPagamentoService) {
+    public RestauranteService(RestauranteRepository restauranteRepository, CozinhaService cozinhaService, CidadeService cidadeService, FormaPagamentoService formaPagamentoService, UsuarioService usuarioService) {
         this.restauranteRepository = restauranteRepository;
         this.cozinhaService = cozinhaService;
         this.cidadeService = cidadeService;
         this.formaPagamentoService = formaPagamentoService;
+        this.usuarioService = usuarioService;
     }
 
     public List<Restaurante> listar() {
@@ -112,4 +111,21 @@ public class RestauranteService {
 
         restaurante.adicionarFormaPagamento(formaPagamento);
     }
+
+    @Transactional
+    public void desassociarResponsavel(Long restauranteId, Long usuarioId) {
+        Restaurante restaurante = buscarOuFalhar(restauranteId);
+        Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
+
+        restaurante.removerResponsavel(usuario);
+    }
+
+    @Transactional
+    public void associarResponsavel(Long restauranteId, Long usuarioId) {
+        Restaurante restaurante = buscarOuFalhar(restauranteId);
+        Usuario usuario = usuarioService.buscarOuFalhar(usuarioId);
+
+        restaurante.adicionarResponsavel(usuario);
+    }
+
 }
