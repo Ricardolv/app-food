@@ -53,4 +53,11 @@ public class Usuario implements Serializable {
 		return !senhaCoincideCom(senha);
 	}
 
+	public void removerGrupo(Grupo grupo) {
+		this.getGrupos().remove(grupo);
+	}
+
+	public void adicionarGrupo(Grupo grupo) {
+		this.getGrupos().add(grupo);
+	}
 }
