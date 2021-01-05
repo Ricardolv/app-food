@@ -30,39 +30,30 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String codigo;
-	
-	@Enumerated(EnumType.ORDINAL)
-	private StatusPedido status = StatusPedido.CRIADO;
-	
-	@Column(name = "taxa_frete")
+
+	private BigDecimal subtotal;
 	private BigDecimal taxaFrete;
-	
-	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
 
-	@Column(name = "sub_total")
-	private BigDecimal subtotal;
+	@Embedded
+	private Endereco enderecoEntrega;
+
+	@Enumerated(EnumType.ORDINAL)
+	private StatusPedido status = StatusPedido.CRIADO;
 
 	@CreationTimestamp
-	@Column(name = "data_cadastro")
-	private OffsetDateTime dataCadastro;
-	
-	@Column(name = "data_confirmacao")
+	private OffsetDateTime dataCriacao;
+
 	private OffsetDateTime dataConfirmacao;
-
-	@Column(name = "data_entrega")
-	private OffsetDateTime dataEntrega;
-	
-	@Column(name = "data_cancelamento")
 	private OffsetDateTime dataCancelamento;
+	private OffsetDateTime dataEntrega;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
 	private FormaPagamento formaPagamento;
 
